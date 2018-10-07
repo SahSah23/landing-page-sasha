@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- My CSS :) -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
+    <script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
+
+    <!--Font Awesome (added because you use icons in your prepend/append)-->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+    <title>Sasha's Landing Page</title>
+  </head>
+  
+  <body>
+    <div class="container h-100">
+      <div class="row h-100 justify-content-center align-items-center">
+        <form class="col-12">
+          <div>
+            <h1 class="animate-reveal animate-first">WELCOME!</h1>
+            <h1 class="animate-reveal animate-third">Please complete the below:</h1>
+          </div>
+          
+          <div class="form-group">
+            <input type="text" class="form-control" id="formName" placeholder="Name" name="name">
+          </div>
+          
+          <div class="form-group">
+            <input type="email" class="form-control" id="formEmail" placeholder="Email Address" name="email">
+          </div>
+          
+          <div class="form-group">
+            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+          </div>
+          
+          <div class="form-group">
+            <input type="password" class="form-control" id="formPassword" placeholder="Password">
+            
+            <input type="checkbox" onclick="passwordToogle()"> <span class="showPassword">Show Password</span>
+          </div>
+          
+          <input type="submit" class="btn btn-success btn-send" value="Submit">
+        </form>
+      </div>  
+    </div>
+    
+    <!-- Extra JavaScript/CSS added manually in "Settings" tab -->
+    <!-- Include jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+    <script>
+      function passwordToogle() {
+        var password = document.getElementById("formPassword");
+        
+        if (password.type === "password") {
+          password.type = "text";
+        } else {
+          password.type = "password";
+        }
+      }
+      
+      $(document).ready(function(){
+        var date_input=$('input[name="date"]');
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        
+        date_input.datepicker({
+          format: 'mm/dd/yyyy',
+          container: container,
+          todayHighlight: true,
+          autoclose: true,
+        })
+      })
+      
+      $('.btn').click(function() {
+        var empty = $(this).parent().find("input").filter(function() {
+          return this.value === "";
+        });
+        
+        if(empty.length) {
+          alert("All fields are required!");
+        }
+      });
+
+
+    </script>
+  </body>
+</html>
